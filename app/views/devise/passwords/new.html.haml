@@ -1,0 +1,13 @@
+.account-wrapper
+  .account-wrapper-inner
+    .account-main
+      %h2 パスワードをお忘れですか?
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .form-label
+          = f.label "メールアドレス"
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-field"
+        .actions
+          = f.submit "リセットパスワードを送信する", class: "actions-btn"
+      = render "devise/shared/links"

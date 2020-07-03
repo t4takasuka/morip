@@ -1,0 +1,31 @@
+.account-wrapper
+  .account-wrapper-inner
+    .account-main
+      %h2 アカウントを作成
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource 
+        .form-label
+          = f.label :ニックネーム
+          %br/
+          = f.text_field :name, autofocus: true, class: "form-field"
+        .form-label
+          = f.label :メールアドレス
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-field"
+        .form-label
+          = f.label :パスワード
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} 文字以上)
+          %br/
+          = f.password_field :password, autocomplete: "new-password", class: "form-field"
+        .form-label
+          = f.label :もう一度パスワードを入力してください
+          %br/
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-field"
+        .actions
+          = f.submit "アカウントを作成する", class: "actions-btn"
+
+        .form-label
+          = "すでにアカウントをお持ちですか？"
+          = render "devise/shared/links"
