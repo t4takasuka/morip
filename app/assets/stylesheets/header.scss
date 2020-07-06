@@ -1,0 +1,30 @@
+.header-wrapper {
+  background-color: rgb(0, 81, 146);
+  .header-inner {
+    padding: 10px;
+    display: flex;
+    .logo-wrapper {
+      padding: 10px;
+      .logo-inner {
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+    .navi-wrapper {
+      margin-left: auto;
+      .navi-inner {
+        display: flex;
+        padding: 10px;
+        .navi-box {
+          margin: 0 10px;
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
