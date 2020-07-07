@@ -1,6 +1,8 @@
-= current_user.name
+= @post.user.name
 = @post.title
-= @post.text
-
-= link_to "編集", edit_post_path(@post.id)
-= link_to "削除", post_path(@post.id), method: :delete
+= @post.content
+- @post.images.each do |image|
+  = image_tag image.src.url
+- if user_signed_in? && current_user.id == @post.user_id
+  = link_to "編集", edit_post_path(@post.id)
+  = link_to "削除", post_path(@post.id), method: :delete
