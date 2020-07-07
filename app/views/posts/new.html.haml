@@ -1,4 +1,6 @@
 = form_with model: @post, local: true do |form|
   = form.text_field :title, placeholder: "title"
-  = form.text_area :text, placeholder: "text", row: "10"
+  = form.text_area :content, placeholder: "text", row: "10"
+  = form.fields_for :images do |i|
+    = i.file_field :src
   = form.submit "投稿する"

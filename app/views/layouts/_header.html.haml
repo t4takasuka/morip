@@ -2,16 +2,18 @@
   .header-inner
     .logo-wrapper
       .logo-inner
-        = link_to "morip", root_path
+        = link_to "Morip", root_path
     .navi-wrapper
       .navi-inner
-        .navi-box
-          = link_to current_user.name, ""
-        .navi-box
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
-        .navi-box
-          = link_to "ユーザー登録", new_user_registration_path
-        .navi-box
-          = link_to "ログイン", new_user_session_path
-        .navi-box
-          = link_to "投稿する", new_post_path
+        - if user_signed_in?
+          .navi-box
+            = link_to current_user.name
+          .navi-box
+            = link_to "新規投稿", new_post_path
+          .navi-box
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+        - else
+          .navi-box
+            = link_to "新規登録", new_user_registration_path
+          .navi-box
+            = link_to "ログイン", new_user_session_path
