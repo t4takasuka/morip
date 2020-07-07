@@ -7,7 +7,7 @@
       .navi-inner
         - if user_signed_in?
           .navi-box
-            = link_to current_user.name
+            = link_to current_user.name, user_path(current_user)
           .navi-box
             = link_to "新規投稿", new_post_path
           .navi-box
