@@ -3,6 +3,19 @@
 = @post.content
 - @post.images.each do |image|
   = image_tag image.src.url
+
 - if user_signed_in? && current_user.id == @post.user_id
   = link_to "編集", edit_post_path(@post.id)
   = link_to "削除", post_path(@post.id), method: :delete
+
+- if current_user
+  = form_with(model: [@post, @comment], local: true) do |f|
+    = f.text_area :text, placeholder: "コメントする", rows: "2"
+    = f.submit "投稿する"
+- else
+  = "*** コメントの投稿には新規登録/ログインが必要です ***"
+
+- if @comments
+  - @comments.each do |comment|
+    = link_to (comment.user.name), user_path(comment.post.user_id)
+    = comment.text
