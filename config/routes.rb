@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     resources :comments, only: :create
   end
   resources :users, only: :show
+  
+  resources :tags do
+    get "posts", to: "posts#tag"
+  end
 end

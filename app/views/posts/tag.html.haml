@@ -1,0 +1,7 @@
+= @tag.name
+- @posts.each do |post|
+  = link_to (post.user.name), user_path(post.user_id)
+  = link_to (post.title), post_path(post.id)
+  = post.content
+  - post.images.each do |image|
+    = link_to (image_tag image.src.url), post_path(post.id)

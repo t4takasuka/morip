@@ -15,6 +15,10 @@
 - else
   = "*** コメントの投稿には新規登録/ログインが必要です ***"
 
+- if @tags
+  - @tags.each do |tag|
+    = link_to (tag.name), tag_posts_path(tag_id: tag.id)
+
 - if @comments
   - @comments.each do |comment|
     = link_to (comment.user.name), user_path(comment.post.user_id)

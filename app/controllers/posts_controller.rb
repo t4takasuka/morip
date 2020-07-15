@@ -19,6 +19,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments
+    @tag = Tag.new
+    @tags = @post.tags
   end
 
   def edit
@@ -37,9 +39,15 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def tag
+    @tag_list = Tag.includes([:name])
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.all
+  end
+
   private
   def post_params
-    params.require(:post).permit(:title, :content, images_attributes: [:src, :_destroy, :id]).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :content, :hashbody, images_attributes: [:src, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
   def move_to_index
