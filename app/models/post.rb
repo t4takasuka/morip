@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  has_many :likes
+  has_many :users, through: :likes
 
   validates :title, :content, presence: true
 
@@ -25,5 +27,9 @@ class Post < ApplicationRecord
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       post.tags << tag
     end
+  end
+
+  def like_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end
