@@ -1,4 +1,4 @@
-= @post.user.name
+= link_to (@post.user.name), user_path(@post.user_id)
 = @post.title
 = @post.content
 - @post.images.each do |image|
@@ -8,6 +8,17 @@
   = link_to "編集", edit_post_path(@post.id)
   = link_to "削除", post_path(@post.id), method: :delete
 
+- if user_signed_in?
+  - if @post.like_by?(current_user)
+    %span いいね解除
+    = link_to (@post.likes.count), post_like_path(@post.id) , method: :delete
+  - else
+    %span いいね登録
+    = link_to (@post.likes.count), post_likes_path(@post.id) , method: :post
+%span いいね数：
+= @post.likes.count
+
+%br
 - if current_user
   = form_with(model: [@post, @comment], local: true) do |f|
     = f.text_area :text, placeholder: "コメントする", rows: "2"
@@ -15,11 +26,15 @@
 - else
   = "*** コメントの投稿には新規登録/ログインが必要です ***"
 
+%br
 - if @tags
   - @tags.each do |tag|
     = link_to (tag.name), tag_posts_path(tag_id: tag.id)
 
+%br
 - if @comments
   - @comments.each do |comment|
+    %span ユーザー名：
     = link_to (comment.user.name), user_path(comment.post.user_id)
+    %span コメント：
     = comment.text
