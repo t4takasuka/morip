@@ -6,26 +6,25 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :relationships
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follow_id"
-  has_many :followers, through: :reverse_of_relationships, source: :user
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followings, through: :following_relationships
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, length: { minimum: 6 }, allow_blank: true
   validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
 
-  def follow(other_user)
-    unless self == other_user
-      self.relationships.find_or_create_by(follow_id: other_user.id)
-    end
-
-  def unfollow(other_user)
-    relationship = self.relationships.find_by(follow_id: other_user.id)
-    relationship.destroy if relationship
+  def following?(other_user)
+    following_relationships.find_by(following_id: other_user.id)
   end
 
-  def following?(other_user)
-    self.followings.include?(other_user)
+  def follow!(other_user)
+    following_relationships.create!(following_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    following_relationships.find_by(follower_id: other_user.id).destroy
   end
 end
