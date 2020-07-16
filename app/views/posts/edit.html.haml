@@ -3,5 +3,5 @@
   = f.text_area :content, placeholder: "text", row: "10"
   = f.fields_for :images do |i|
     = i.file_field :src
-  = f.text_area :hashbody, placeholder: "tag"
+  = f.text_area :hashbody, placeholder: "例：#シャウエン,#景色  ※頭にハッシュタグ(#)をつけてください"
   = f.submit "投稿する"

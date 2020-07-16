@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   
   resources :posts do
     resources :comments, only: :create
+    resources :likes, only: [:create, :destroy]
   end
-  
+
   resources :tags do
     get "posts", to: "posts#tag"
   end
