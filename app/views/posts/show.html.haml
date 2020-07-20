@@ -20,9 +20,9 @@
 
 %br
 - if current_user
-  = form_with(model: [@post, @comment], local: true) do |f|
-    = f.text_area :text, placeholder: "コメントする", rows: "2"
-    = f.submit "投稿する"
+  = form_with(model: [@post, @comment], local: true, id: "new_comment") do |f|
+    = f.text_area :text, placeholder: "コメントする", rows: "2" , class: "textbox"
+    = f.submit "投稿する", class: "form__submit"
 - else
   = "*** コメントの投稿には新規登録/ログインが必要です ***"
 
@@ -32,6 +32,7 @@
     = link_to (tag.name), tag_posts_path(tag_id: tag.id)
 
 %br
+.comments
 - if @comments
   - @comments.each do |comment|
     %span ユーザー名：
