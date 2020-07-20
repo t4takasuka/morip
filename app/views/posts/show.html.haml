@@ -8,15 +8,7 @@
   = link_to "編集", edit_post_path(@post.id)
   = link_to "削除", post_path(@post.id), method: :delete
 
-- if user_signed_in?
-  - if @post.like_by?(current_user)
-    %span いいね解除
-    = link_to (@post.likes.count), post_like_path(@post.id) , method: :delete
-  - else
-    %span いいね登録
-    = link_to (@post.likes.count), post_likes_path(@post.id) , method: :post
-%span いいね数：
-= @post.likes.count
+= render partial: 'likes/like',locals: { post: @post}
 
 %br
 - if current_user
