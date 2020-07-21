@@ -28,6 +28,8 @@
 - if @comments
   - @comments.each do |comment|
     %span ユーザー名：
-    = link_to (comment.user.name), user_path(comment.post.user_id)
+    = link_to (comment.user.name), user_path(comment.user_id)
     %span コメント：
     = comment.text
+    - if user_signed_in? && current_user.id == comment.user_id
+      = link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete
