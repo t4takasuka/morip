@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :like_posts, through: :likes, source: :post
+  mount_uploader :image, ImageUploader
+  
+  # ↓フォローモデル
   has_many :relationships
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
   has_many :followings, through: :following_relationships
@@ -15,6 +18,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :profile, length: { maximum: 200 }
   validates :email, presence: true, uniqueness: true, length: { minimum: 6 }, allow_blank: true
   validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
 
