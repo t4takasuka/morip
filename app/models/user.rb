@@ -26,7 +26,6 @@ class User < ApplicationRecord
     find_or_create_by(email: 'test@example.com') do |user|
       user.name = "testさん"
       user.profile = "よろしくお願いします。"
-      user.image = "/assets/default.png"
       user.password = SecureRandom.urlsafe_base64
     end
   end
