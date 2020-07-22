@@ -1,8 +1,12 @@
-- if user_signed_in? && current_user.id == @user.id
+- if user_signed_in? && current_user.id == @user.id && current_user.name != "testさん"
   = link_to "編集", edit_user_registration_path(@user.id)
 
+- if user_signed_in? && current_user.image?
+  = image_tag @user.image.url
+- else 
+  = image_tag "/assets/default.png", size: "50x50", alt: "testuser"
+
 = "profile : #{@user.profile}"
-= image_tag @user.image.url
 
 = @user.name + "の投稿一覧"
 - @posts.each do |post|
