@@ -33,12 +33,11 @@
           = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-field"
         .form-label
           = f.label :プロフィール画像
-          %em 必須
+          %em 任意
           %br/
           = f.file_field :image
         .actions
           = f.submit "アカウントを作成する", class: "actions-btn"
-
         .form-label
           = "すでにアカウントをお持ちですか？"
           = render "devise/shared/links"

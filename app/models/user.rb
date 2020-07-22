@@ -22,6 +22,15 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: { minimum: 6 }, allow_blank: true
   validates :email, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
 
+  def self.guest
+    find_or_create_by(email: 'test@example.com') do |user|
+      user.name = "testさん"
+      user.profile = "よろしくお願いします。"
+      user.image = "/assets/default.png"
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)
   end
