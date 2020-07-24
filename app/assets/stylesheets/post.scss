@@ -1,9 +1,41 @@
 .main-wrapper {
+  padding-top: 56px;
   .main-inner {
     .main-image {
       img {
         width: 100%;
         height: 800px;
+      }
+    }
+  }
+}
+
+.main-contents {
+  .contents-inner {
+    
+    .contents-inner-title {
+
+    }
+    .content-box{
+      .content-title {
+
+      }
+      .content-reftbox {
+        .content-imgbox {
+        }
+        .content-likebox {
+
+        }
+      }
+      .content-rightbox {
+        .content-namebox {
+        }
+        .content-bodybox {
+        }
+      }
+      .content-bottombox {
+        .content-tagbox {
+        }
       }
     }
   }
