@@ -3,11 +3,25 @@
     .main-image
       = image_tag "モロッコ１.jpg"
 
-- @post.each do |post|
-  = link_to (post.user.name), user_path(post.user_id)
-  = link_to (post.title), post_path(post.id)
-  = post.content
-  - post.images.each do |image|
-    = link_to (image_tag image.src.url), post_path(post.id)
-  - post.tags.each do |tag|
-    = link_to (tag.name), tag_posts_path(tag_id: tag.id)
+.main-contents
+  .contents-inner
+    .contents-inner-title
+      投稿一覧
+    .content-box
+      - @post.each do |post|
+        .content-title
+          = link_to (post.title), post_path(post.id)
+        .content-reftbox
+          .content-imgbox
+            - post.images.each do |image|
+              = link_to (image_tag image.src.url), post_path(post.id)
+          .content-likebox
+        .content-rightbox
+          .content-namebox
+            = link_to (post.user.name), user_path(post.user_id)
+          .content-bodybox
+            = post.content
+        .content-bottombox
+          .content-tagbox
+            - post.tags.each do |tag|
+              = link_to (tag.name), tag_posts_path(tag_id: tag.id)

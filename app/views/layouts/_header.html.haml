@@ -1,8 +1,10 @@
 .header-wrapper
   .header-inner
     .logo-wrapper
-      .logo-inner
+      .logo-inner 
         = link_to "Morip", root_path
+      .navi-box
+        投稿一覧
     .navi-wrapper
       .navi-inner
         - if user_signed_in?
