@@ -1,27 +1,34 @@
-.main-wrapper
-  .main-inner
-    .main-image
-      = image_tag "モロッコ１.jpg"
+.section.text-center
+  .container-auto
+    .row
+      .col
+        = image_tag "モロッコ１.jpg", class: "img-fluid"
+  
 
-.main-contents
-  .contents-inner
-    .contents-inner-title
+.album.py-5.bg-light
+  .container
+    %h1.text-center
       投稿一覧
-    .content-box
+    .row
       - @post.each do |post|
-        .content-title
-          = link_to (post.title), post_path(post.id)
-        .content-reftbox
-          .content-imgbox
-            - post.images.each do |image|
-              = link_to (image_tag image.src.url), post_path(post.id)
-          .content-likebox
-        .content-rightbox
-          .content-namebox
-            = link_to (post.user.name), user_path(post.user_id)
-          .content-bodybox
-            = post.content
-        .content-bottombox
-          .content-tagbox
-            - post.tags.each do |tag|
-              = link_to (tag.name), tag_posts_path(tag_id: tag.id)
+        .col-md-3        
+          .card.mb-3.shadow-sm
+            .img.card-img-top
+              - post.images.each do |image|
+                = link_to (image_tag image.src.url), post_path(post.id), class: "img-body"
+                .card-body
+                  %p.card-title
+                    = link_to (post.title), post_path(post.id)
+                  %p.card-text
+                    = post.content
+                  .d-flex.justify-content-between.align-items-center
+                    .btn-group
+                      .btn.btn-sm.btn-outline-secondary
+                        View
+                      .btn.btn-sm.btn-outline-secondary
+                        Edit
+                      .small.text-muted
+                        9 mins
+                      .tag-box
+                        - post.tags.each do |tag|
+                          = link_to (tag.name), tag_posts_path(tag_id: tag.id)
