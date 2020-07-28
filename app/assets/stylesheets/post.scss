@@ -10,33 +10,9 @@
   }
 }
 
-.main-contents {
-  .contents-inner {
-    
-    .contents-inner-title {
-
-    }
-    .content-box{
-      .content-title {
-
-      }
-      .content-reftbox {
-        .content-imgbox {
-        }
-        .content-likebox {
-
-        }
-      }
-      .content-rightbox {
-        .content-namebox {
-        }
-        .content-bodybox {
-        }
-      }
-      .content-bottombox {
-        .content-tagbox {
-        }
-      }
-    }
+.section.text-center {
+  padding-top: 63px;
+  .img-fluid {
+  width: 100%;
   }
 }
