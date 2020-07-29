@@ -1,8 +1,9 @@
-= link_to (@post.user.name), user_path(@post.user_id)
-= @post.title
-= @post.content
-- @post.images.each do |image|
-  = image_tag image.src.url
+.section.text-center
+  = link_to (@post.user.name), user_path(@post.user_id)
+  = @post.title
+  = @post.content
+  - @post.images.each do |image|
+    = image_tag image.src.url
 
 - if user_signed_in? && current_user.id == @post.user_id
   = link_to "編集", edit_post_path(@post.id)

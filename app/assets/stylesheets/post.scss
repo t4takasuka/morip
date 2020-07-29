@@ -1,13 +1,17 @@
-.main-wrapper {
-  padding-top: 56px;
-  .main-inner {
-    .main-image {
-      img {
-        width: 100%;
-        height: 800px;
-      }
-    }
-  }
+.card-title.border-bottom {
+  line-height: 50px;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-text {
+  height: 100px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .section.text-center {
@@ -15,4 +19,14 @@
   .img-fluid {
   width: 100%;
   }
+}
+
+a.img.card-img-top {
+  img {
+  width: 100%;
+  }
+}
+
+.carousel-inner {
+  max-height: 500px;
 }
