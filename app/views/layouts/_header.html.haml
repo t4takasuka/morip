@@ -1,23 +1,33 @@
-.header-wrapper
-  .header-inner
-    .logo-wrapper
-      .logo-inner 
-        = link_to "Morip", root_path
-      .navi-box
-        投稿一覧
-    .navi-wrapper
-      .navi-inner
+.navbar.navbar-light
+  .container.d-flex.justify-content-between
+    .navbar-brand.d-flex.align-items-center
+      %h4
+        = link_to "Morip", root_path, class: "text-dark"
+    .navbar-light.navbar-toggler{type: "button",
+      data: {toggle: "collapse",
+            target: "#navbarHeader"},
+      aria: {controls: "navbarHeader",
+            expanded: "false",
+            label: "Toggle navigation"}}
+      %span.navbar-toggler-icon
+
+.collapse.navbar#navbarHeader.shadow-sm
+  .container
+    .row
+      .col-sm-8.col-md-12
         - if user_signed_in?
-          .navi-box
-            = link_to current_user.name, user_path(current_user)
-          .navi-box
-            = link_to "新規投稿", new_post_path
-          .navi-box
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
+          %ul.list-unstyled
+            %li
+              = link_to "マイページ", user_path(current_user), class: "text-dark"
+            %li
+              = link_to "新規投稿", new_post_path, class: "text-dark"
+            %li
+              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark"
         - else
-          .navi-box
-            = link_to "新規登録", new_user_registration_path
-          .navi-box
-            = link_to "ログイン", new_user_session_path
-          .navi-box
-            = link_to "かんたんログイン", user_guest_sign_in_path, method: :post
+          %ul.list-unstyled
+            %li
+              = link_to "新規登録", new_user_registration_path, class: "text-white"
+            %li
+              = link_to "ログイン", new_user_session_path, class: "text-white"
+            %li
+              = link_to "かんたんログイン", user_guest_sign_in_path, method: :post, class: "text-white"
