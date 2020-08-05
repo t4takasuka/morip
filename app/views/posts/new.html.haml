@@ -1,8 +1,1 @@
-.section.text-center
-  = form_with model: @post, local: true do |f|
-    = f.text_field :title, placeholder: "title"
-    = f.text_area :content, placeholder: "text", row: "10"
-    = f.fields_for :images do |i|
-      = i.file_field :src
-    = f.text_area :hashbody, placeholder: "例：#シャウエン,#景色  ※頭にハッシュタグ(#)をつけてください"
-    = f.submit "投稿する"
+= render partial: 'posts/newedit',locals: { post: @post}

@@ -1,11 +1,39 @@
-= @tag.name
-- @posts.each do |post|
-  = link_to (post.user.name), user_path(post.user_id)
-  = link_to (post.title), post_path(post.id)
-  = post.content
-  - post.images.each do |image|
-    = link_to (image_tag image.src.url), post_path(post.id)
+-# = @tag.name
+-# - @posts.each do |post|
+-#   = link_to (post.user.name), user_path(post.user_id)
+-#   = link_to (post.title), post_path(post.id)
+-#   = post.content
+-#   - post.images.each do |image|
+-#     = link_to (image_tag image.src.url), post_path(post.id)
   
-  - if user_signed_in? && current_user.id == post.user_id
-    = link_to "編集", edit_post_path(post.id)
-    = link_to "削除", post_path(post.id), method: :delete
+-#   - if user_signed_in? && current_user.id == post.user_id
+-#     = link_to "編集", edit_post_path(post.id)
+-#     = link_to "削除", post_path(post.id), method: :delete
+
+
+.album.py-4
+  .container
+    .row
+      .col-lg-4.col-md-6.mb-3
+        %h5 #{icon("fas", "hashtag")}#{@tag.name}の一覧
+    .row
+      - @posts.each do |post|
+        .col-lg-4.col-md-6.mb-3
+          .card.shadow-sm
+            - post.images.each do |image|
+              .img-box
+                = link_to (image_tag image.src.url), post_path(post.id), class: "img"
+              .col-md-12
+                .card.py-2.mt-12
+                  = link_to (post.title), post_path(post.id), class: "text"
+                  .row
+                    .col-sm-8.date
+                      = post.created_at.strftime("%Y-%m-%d %H:%M")
+                    .col-sm-4.like
+                      = render partial: 'likes/like',locals: { post: post}
+                  .tag
+                    - if post.tags
+                      - post.tags.each do |tag|
+                        = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
+                          = icon("fas", "hashtag")
+                          = tag.name

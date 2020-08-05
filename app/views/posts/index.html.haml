@@ -1,33 +1,38 @@
-.carousel.slide#carouselExampleIndicators{:data => {:ride => "carousel", :interval => "false"}}
-  %ol.carousel-indicators
-    %li.active{:data => {:target => "#carouselExampleIndicators", :slide_to => "0" }}
-    %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "1" }}
-    %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "2" }}
-  .carousel-inner
-    .carousel-item.active
-      %img.w-100{:src => "assets/2670358_s.jpg", :alt => "First slide"}
-    .carousel-item
-      %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
-    .carousel-item
-      %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
-  %a.carousel-control-prev{:href => "#carouselExampleIndicators", :role => "button", :data => {:slide => "prev"}}
-  %a.carousel-control-next{:href => "#carouselExampleIndicators", :role => "button",  :data => {:slide => "next"}}
+-# .carousel.slide#carouselExampleIndicators{:data => {:ride => "carousel", :interval => "false"}}
+-#   %ol.carousel-indicators
+-#     %li.active{:data => {:target => "#carouselExampleIndicators", :slide_to => "0" }}
+-#     %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "1" }}
+-#     %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "2" }}
+-#   .carousel-inner
+-#     .carousel-item.active
+-#       %img.w-100{:src => "assets/2670358_s.jpg", :alt => "First slide"}
+-#     .carousel-item
+-#       %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
+-#     .carousel-item
+-#       %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
+-#   %a.carousel-control-prev{:href => "#carouselExampleIndicators", :role => "button", :data => {:slide => "prev"}}
+-#   %a.carousel-control-next{:href => "#carouselExampleIndicators", :role => "button",  :data => {:slide => "next"}}
 
-.album.py-4.bg-light
+.album.py-4
   .container
     .row
       - @post.each do |post|
-        .col-md-3
-          .card.mb-4.shadow
+        .col-lg-4.col-md-6.mb-3
+          .card.shadow-sm
             - post.images.each do |image|
-              = link_to (image_tag image.src.url), post_path(post.id), class: "img card-img-top"
-              .card-body
-                %h5.card-title.border-bottom
-                  = link_to (post.title), post_path(post.id)
-                %p.card-text
-                  = post.content
-                %h6.tag-box
-                  - post.tags.each do |tag|
-                    = link_to (tag.name), tag_posts_path(tag_id: tag.id), class: "btn btn-primary pb-1"
-              .card-footer
-                = link_to post.user.name, user_path(current_user)
+              .img-box
+                = link_to (image_tag image.src.url), post_path(post.id), class: "img"
+              .col-md-12
+                .card.py-2.mt-12
+                  = link_to (post.title), post_path(post.id), class: "text"
+                  .row
+                    .col-sm-8.date
+                      = post.created_at.strftime("%Y-%m-%d %H:%M")
+                    .col-sm-4.like
+                      = render partial: 'likes/like',locals: { post: post}
+                  .tag
+                    - if post.tags
+                      - post.tags.each do |tag|
+                        = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
+                          = icon("fas", "hashtag")
+                          = tag.name

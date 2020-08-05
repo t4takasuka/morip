@@ -1,32 +1,111 @@
-.card-title.border-bottom {
-  line-height: 50px;
-  height: 50px;
+.album.py-4 {
+  background-color: #d1d1d1;
+}
+
+.card {
+  min-height: 80px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.card-text {
-  height: 100px;
+.img-box {
+  padding-bottom: 73.04688%;
+  position: relative;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  background-color: #9f9f9f;
 }
 
-.section.text-center {
-  padding-top: 63px;
-  .img-fluid {
-  width: 100%;
-  }
-}
-
-a.img.card-img-top {
+a {
+  color: #fff;
   img {
-  width: 100%;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    max-width: none;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
   }
+}
+
+.img-box2 {
+  position: relative;
+  overflow: hidden;
+  background-color: #9f9f9f;
+}
+
+.img2.img-fluid {
+  width: 100%;
 }
 
 .carousel-inner {
   max-height: 500px;
+}
+
+.card.shadow-sm {
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+}
+
+.card.py-2 {
+  color: white;
+  background-color: #2a2a2a;
+  border: 0;
+}
+
+.text {
+  color: white;
+  &:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
+}
+
+.date {
+  color: #9f9f9f;
+  font-size: small
+}
+
+.tag {
+  color: #9f9f9f;
+  font-size: small;
+  &:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
+}
+
+.like {
+  text-align: right;
+  color: #9f9f9f;
+  font-size: small
+}
+
+.textbox {
+  width: 100%;
+  height: 40px;
+  border-color: #4d4d4d;
+  border-radius: 5px;
+}
+
+.card.comments {
+  padding: 10px;
+  background-color: #4d4d4d;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.card-text {
+  color: #9f9f9f;
+}
+
+.card-text-comments {
+  padding: 5px 20px 0px;
+}
+
+.new-form {
+  width: 100%;
+  margin-bottom: 20px;
 }

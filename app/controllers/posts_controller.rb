@@ -21,6 +21,8 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @tag = Tag.new
     @tags = @post.tags
+    @user = User.new
+    @image = @user.image
   end
 
   def edit

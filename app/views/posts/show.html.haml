@@ -1,36 +1,61 @@
-.section.text-center
-  = link_to (@post.user.name), user_path(@post.user_id)
-  = @post.title
-  = @post.content
-  - @post.images.each do |image|
-    = image_tag image.src.url
+.album.py-4
+  .container
+    .row
+      .col-lg-12.col-md-12.mb-3
+        .card.shadow-sm
+          .img-box2
+            - @post.images.each do |image|
+              = image_tag image.src.url, class: "img2 img-fluid"
+          .col-md-12.border-bottom.border-secondary
+            .card.py-2.mt-12
+              = @post.title
+              .row
+                .col-sm-8.date
+                  = @post.created_at.strftime("%Y-%m-%d %H:%M")
+                .col-sm-4.like
+                  = render partial: 'likes/like',locals: { post: @post}
+              .tag
+                - if @post.tags
+                  - @post.tags.each do |tag|
+                    = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
+                      = icon("fas", "hashtag")
+                      = tag.name
+          .col-md-12.pt-2
+            = link_to (@post.user.name), user_path(@post.user_id)
+          .col-md-12
+            .card-text.pt-2
+              = @post.content
+          .col-md-12.text-right
+            - if user_signed_in? && current_user.id == @post.user_id
+              = link_to "編集", edit_post_path(@post.id)
+              = link_to "削除", post_path(@post.id), method: :delete
 
-- if user_signed_in? && current_user.id == @post.user_id
-  = link_to "編集", edit_post_path(@post.id)
-  = link_to "削除", post_path(@post.id), method: :delete
+  .container
+    .row
+      .col-md-12
+        .card.comments
+          .card-text.pl-3.pb-2.border-bottom.border-secondary
+            コメント一覧
+          .comments
+            - if @comments
+              - @comments.each do |comment|
+                .card-text-comments
+                  .row
+                    .col-sm-2.col-md-2
+                      = link_to (comment.user.name), user_path(comment.user_id)
+                    .col-sm-8.col-md-8
+                      = comment.text
+                    .col-sm-2.col-md-2
+                      - if user_signed_in? && current_user.id == comment.user_id
+                        = link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete
 
-= render partial: 'likes/like',locals: { post: @post}
-
-%br
-- if current_user
-  = form_with(model: [@post, @comment], local: true, id: "new_comment") do |f|
-    = f.text_area :text, placeholder: "コメントする", rows: "2" , class: "textbox"
-    = f.submit "投稿する", class: "form__submit"
-- else
-  = "*** コメントの投稿には新規登録/ログインが必要です ***"
-
-%br
-- if @tags
-  - @tags.each do |tag|
-    = link_to (tag.name), tag_posts_path(tag_id: tag.id)
-
-%br
-.comments
-- if @comments
-  - @comments.each do |comment|
-    %span ユーザー名：
-    = link_to (comment.user.name), user_path(comment.user_id)
-    %span コメント：
-    = comment.text
-    - if user_signed_in? && current_user.id == comment.user_id
-      = link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete
+.fotter.text-center
+  .container
+    .row
+      .col
+        - if current_user
+          = form_with(model: [@post, @comment], local: true, id: "new_comment") do |f|
+            = f.text_area :text, placeholder: "コメント入力欄", rows: "2" , class: "textbox p-2"
+            = f.submit "投稿する", class: "form__submit"
+        - else
+          = "*** コメントの投稿には新規登録/ログインが必要です ***"

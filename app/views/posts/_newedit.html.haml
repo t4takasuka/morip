@@ -1,0 +1,24 @@
+.account-wrapper
+  .account-wrapper-inner
+    .account-main
+      %h2 新規投稿
+      = form_with model: @post, local: true do |f|
+        = f.label :タイトル
+        %em 必須
+        %br/
+        = f.text_field :title, class: "new-form"
+        = f.label :コンテンツ
+        %em 必須
+        %br/
+        = f.text_area :content, row: "10", class: "new-form"
+        = f.label :画像
+        %em 必須
+        %br/
+        = f.fields_for :images do |i|
+          = i.file_field :src, class: "new-form"
+        = f.label :タグ
+        %em 任意
+        %br/
+        = f.text_field :hashbody, placeholder: "例:#シャウエン,#景色", class: "new-form"
+        %br/
+        = f.submit "投稿する", class: "btn btn-primary"
