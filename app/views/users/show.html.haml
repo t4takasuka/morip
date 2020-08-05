@@ -1,22 +1,52 @@
-- if user_signed_in? && current_user.id == @user.id && current_user.name != "testさん"
-  = link_to "編集", edit_user_registration_path(@user.id)
+.album.py-4
+  .container
+    .card.user.mb-4
+      .card-body.border-secondary
+        .row
+          .col-sm-4.col-md-4
+            イメージ
+            -# - if user_signed_in? && current_user.image
+            -#   = image_tag @user.image.url
+            -# - else 
+            -#   = image_tag "/assets/default.png", alt: "testuser"
+          .col-sm-8.col-md-8
+            .row
+              .col-sm-12.col-md-12
+                = @user.name
+              .col-sm-12.col-md-12
+                = "#{@user.profile}"
+      .row
+        .card-body
+          .col-sm-12.col-md-12
+            .card-text
+              総いいね
+              = @likes
+            .card-text
+              = "投稿数 #{@counts}"
+            .card-text
+              = render partial: 'relationships/follow'
+            .card-text
+              - if user_signed_in? && current_user.id == @user.id && current_user.name != "testさん"
+                = link_to "編集", edit_user_registration_path(@user.id)
 
-- if user_signed_in? && current_user.image
-  = image_tag @user.image.url
-- else 
-  = image_tag "/assets/default.png", size: "50x50", alt: "testuser"
-
-= "profile : #{@user.profile}"
-
-= @user.name + "の投稿一覧"
-- @posts.each do |post|
-  %span タイトル
-  = link_to (post.title), post_path(post.id)
-  %span コンテンツ
-  = post.content
-  - post.images.each do |image|
-    = link_to (image_tag image.src.url), post_path(post.id)
-  - post.tags.each do |tag|
-    = link_to (tag.name), tag_posts_path(tag_id: tag.id)
-
-= render partial: 'relationships/follow'
+    .row
+      - @posts.each do |post|
+        .col-lg-4.col-md-6.mb-3
+          .card.shadow-sm
+            - post.images.each do |image|
+              .img-box
+                = link_to (image_tag image.src.url), post_path(post.id), class: "img"
+              .col-md-12
+                .card.py-2.mt-12
+                  = link_to (post.title), post_path(post.id), class: "text"
+                  .row
+                    .col-sm-8.date
+                      = post.created_at.strftime("%Y-%m-%d %H:%M")
+                    .col-sm-4.like
+                      = render partial: 'likes/like',locals: { post: post}
+                  .tag
+                    - if post.tags
+                      - post.tags.each do |tag|
+                        = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
+                          = icon("fas", "hashtag")
+                          = tag.name

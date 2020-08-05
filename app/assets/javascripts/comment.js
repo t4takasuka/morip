@@ -1,14 +1,19 @@
 $(function(){
   function buildHTML(comment){
-    var html = `<p>
-                  <a href=/users/${comment.user_id}>${comment.user_name}</a>
-                  ${comment.text}
-                </p>`
+    var html =` <div class="card-text-comments">
+                  <div class="row">
+                    <div class="col-sm-2 col-md-2">
+                      <a href=/users/${comment.user_id}>${comment.user_name}</a>
+                    </div>
+                    <div class="col-sm-8 col-md-8">
+                      ${comment.text}
+                    </div>
+                  </div>
+                </div>`
     return html;
   }
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
-    // console.log(this)
     var formData = new FormData(this);
     var url = $(this).attr('action')
     $.ajax({
@@ -21,7 +26,7 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.comments').append(html);
+      $('.card.comments').append(html);
       $('.textbox').val('');
       $('.form__submit').prop('disabled', false);
     })
