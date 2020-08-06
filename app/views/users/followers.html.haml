@@ -1,5 +1,39 @@
-フォロワー一覧
-= @user.followers.count
-- @users.each do |user|
-  = image_tag user.image.url
-  = link_to (user.name), user_path(user.id)
+-# フォロワー一覧
+-# = @user.followers.count
+-# - @users.each do |user|
+-#   = image_tag user.image.url
+-#   = link_to (user.name), user_path(user.id)
+
+.album.py-4
+  .container
+    .row
+      .col-lg-4.col-md-6.mb-3
+        %h5 #{@user.name}のフォロワー一覧
+    - @users.each do |user|
+      .card.user.mb-4
+        .card-body
+          .row
+            .col-sm-2
+              .user-img-box
+                - if user_signed_in? && current_user.image
+                  = image_tag user.image.url, class: "user-img img-fliud"
+                - else 
+                  = image_tag "/assets/default.png", alt: "testuser", class: "user-img img-fliud"
+            .col-sm-10
+              .row
+                .col-sm-12.col-md-12.py-1.border-bottom.border-secondary
+                  = link_to (user.name), user_path(user.id)
+              .row.no-gutters
+                .col-sm-12.col-md-12.pt-1
+                  = "#{user.profile}"
+          .row
+            .col-md-12.pt-1.card-text.d-flex.align-items-center.justify-content-between
+              = render partial: 'relationships/follow'
+            .col-md-12.pt-1.card-text
+              = "投稿数 #{@counts}"
+            .col-md-12.pt-1.card-text
+              総いいね
+              = @likes
+            .col-sm-12.col-md-12
+              - if user_signed_in? && current_user.id == @user.id && current_user.name != "testさん"
+                = link_to "編集", edit_user_registration_path(@user.id)

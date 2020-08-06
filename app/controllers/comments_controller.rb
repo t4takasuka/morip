@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
     comment.destroy
     post = Post.find(params[:post_id])
+    flash[:alertnow] = "コメントを削除しました"
     redirect_to post_path(post.id)
   end
 

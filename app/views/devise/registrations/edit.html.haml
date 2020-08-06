@@ -40,7 +40,7 @@
           %br/
           = f.file_field :image
         .actions
-          = f.submit "アカウントを更新する", class: "actions-btn"
-      %h3 #{button_to "退会する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-      %br
-      = link_to "戻る", :back
+          = f.submit "アカウントを更新する", class: "actions-btn bg-primary"
+      .taikai.d-flex
+        %h6 #{button_to "退会する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+        = link_to "戻る", :back ,class: "text pl-3"
