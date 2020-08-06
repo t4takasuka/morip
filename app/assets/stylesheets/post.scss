@@ -57,6 +57,9 @@ a {
 
 .text {
   color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   &:hover {
     color: #007bff;
     text-decoration: none;
@@ -108,4 +111,36 @@ a {
 .new-form {
   width: 100%;
   margin-bottom: 20px;
+}
+
+
+.name {
+  color: #fff;
+  &:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
+}
+
+.card-text.pt-2.content {
+  color: #9f9f9f;
+}
+
+em {
+  font-size: 90%;
+  color: #9f9f9f;;
+}
+
+.user-img-box {
+  // height: 150px;
+  text-align: center;
+  .user-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.col-md-12.pt-1.card-text {
+  display: flex;
 }

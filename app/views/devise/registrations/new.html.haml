@@ -37,7 +37,6 @@
           %br/
           = f.file_field :image
         .actions
-          = f.submit "アカウントを作成する", class: "btn btn-primary"
-        .form-label
-          = "すでにアカウントをお持ちですか？"
-          = render "devise/shared/links"
+          = f.submit "アカウントを作成する", class: "actions-btn bg-primary"
+        .form-session
+          = link_to "すでにアカウントをお持ちですか？", new_user_session_path, class: "btn btn-secondary session"

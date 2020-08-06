@@ -8,7 +8,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
 
-  validates :title, :content, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
+  validates :content, presence: true, length: { maximum: 300 }
   validates_associated :images
   validates :images, presence: true
 

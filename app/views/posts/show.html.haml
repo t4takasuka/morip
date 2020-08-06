@@ -21,11 +21,11 @@
                       = icon("fas", "hashtag")
                       = tag.name
           .col-md-12.pt-2
-            = link_to (@post.user.name), user_path(@post.user_id)
+            = link_to (@post.user.name), user_path(@post.user_id), class: "name"
           .col-md-12
-            .card-text.pt-2
+            .card-text.pt-2.content
               = @post.content
-          .col-md-12.text-right
+          .col-md-12.text-right.edit
             - if user_signed_in? && current_user.id == @post.user_id
               = link_to "編集", edit_post_path(@post.id)
               = link_to "削除", post_path(@post.id), method: :delete
@@ -36,14 +36,15 @@
         .card.comments
           .card-text.pl-3.pb-2.border-bottom.border-secondary
             コメント一覧
+            %em (300文字以内)
           .comments
             - if @comments
               - @comments.each do |comment|
                 .card-text-comments
                   .row
                     .col-sm-2.col-md-2
-                      = link_to (comment.user.name), user_path(comment.user_id)
-                    .col-sm-8.col-md-8
+                      = link_to (comment.user.name), user_path(comment.user_id), class: "name"
+                    .col-sm-8.col-md-8.card-text
                       = comment.text
                     .col-sm-2.col-md-2
                       - if user_signed_in? && current_user.id == comment.user_id

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :tag]
 
   def index
-    @post = Post.includes([:images])
+    @post = Post.includes([:images]).order(created_at: "DESC")
   end
 
   def new
@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     Post.create(post_params)
+    flash[:notice] = "新規投稿しました。"
     redirect_to root_path
   end
 
@@ -38,6 +39,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:alertnow] = "投稿を削除しました。"
     redirect_to root_path
   end
 

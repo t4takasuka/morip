@@ -4,11 +4,11 @@
       %h2 新規投稿
       = form_with model: @post, local: true do |f|
         = f.label :タイトル
-        %em 必須
+        %em 必須(40文字以内)
         %br/
         = f.text_field :title, class: "new-form"
         = f.label :コンテンツ
-        %em 必須
+        %em 必須(300文字以内)
         %br/
         = f.text_area :content, row: "10", class: "new-form"
         = f.label :画像
