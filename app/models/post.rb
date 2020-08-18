@@ -13,6 +13,14 @@ class Post < ApplicationRecord
   validates_associated :images
   validates :images, presence: true
 
+  def self.search(search)
+    if search
+      Post.where('title LIKE(?) OR content LIKE(?) OR hashbody LIKE(?) ', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      Post.all
+    end
+  end
+
   after_create do
     post = Post.find_by(id: id)
     hashtags = hashbody.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)

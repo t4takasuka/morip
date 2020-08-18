@@ -22,10 +22,11 @@ a {
     max-width: none;
     display: block;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    // top: 50%;
+    // left: 50%;
+    // -webkit-transform: translate(-50%,-50%);
+    // transform: translate(-50%,-50%);
+    transition: 0.5s;
   }
 }
 
@@ -47,6 +48,45 @@ a {
   padding: 10px;
   background-color: #2a2a2a;
   border-radius: 12px;
+}
+
+.card.shadow-sm-2 {
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+}
+
+.card.shadow-sm:hover {
+  img {
+    transform: scale(1.1);
+    transition: 0.5s;
+  }
+  .search-icon {
+    display: block;
+    pointer-events: none;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+    background: #333;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    opacity:0.7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transition: 0.5s;
+    &:before {
+      line-height: 50px;
+    }
+  }
+}
+
+.fas.search-icon {
+  display: none;
 }
 
 .card.py-2 {
@@ -132,7 +172,6 @@ em {
 }
 
 .user-img-box {
-  // height: 150px;
   text-align: center;
   .user-img {
     max-width: 100%;

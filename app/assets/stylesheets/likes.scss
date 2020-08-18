@@ -1,9 +1,15 @@
 .like-button {
-  color: red;
+  color:  #007bff;
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .unlike-button {
   color: black;
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }

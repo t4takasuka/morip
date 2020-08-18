@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show, :tag]
+  before_action :move_to_index, except: [:index, :show, :search, :tag]
 
   def index
     @post = Post.includes([:images]).order(created_at: "DESC")
@@ -41,6 +41,11 @@ class PostsController < ApplicationController
     post.destroy
     flash[:alertnow] = "投稿を削除しました。"
     redirect_to root_path
+  end
+
+  def search
+    @post = Post.search(params[:keyword]).order(created_at: "DESC")
+    # flash[:alertnow] = "検索結果はありません。"
   end
 
   def tag
