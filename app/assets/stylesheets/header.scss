@@ -1,15 +1,22 @@
 .navbar {
   background-color: #2a2a2a;
-}
-
-.navbar-light.navbar-toggler {
-  border: none
+  a {
+    text-decoration: none;
+  }
 }
 
 .title {
   color: #fff;
+  &:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
 }
 
 .menu {
   color: #fff;
+  &:hover {
+    color: #007bff;
+    text-decoration: none;
+  }
 }

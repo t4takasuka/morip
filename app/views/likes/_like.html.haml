@@ -8,6 +8,5 @@
       = icon("far","heart", class: "unlike-button-icon")
     = post.likes.count
 - else
-  = link_to post_likes_path(post.id) , class: "unlike-button", method: :post, remote: true do
-    = icon("fas","heart", class: "unlike-button-icon")
+  = icon("fas","heart", class: "unlike-button-icon")
   = post.likes.count

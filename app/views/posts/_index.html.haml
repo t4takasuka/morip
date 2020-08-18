@@ -1,0 +1,23 @@
+.album.py-4
+  .container
+    .row
+      - @post.each do |post|
+        .col-lg-4.col-md-6.mb-3
+          .card.shadow-sm
+            - post.images.each do |image|
+              .img-box
+                = link_to (image_tag image.src.url), post_path(post.id), class: "img"
+              .col-md-12
+                .card.py-2.mt-12
+                  = link_to (post.title), post_path(post.id), class: "text"
+                  .row
+                    .col-sm-8.date
+                      = post.created_at.strftime("%Y-%m-%d %H:%M")
+                    .col-sm-4.like
+                      = render partial: 'likes/like',locals: { post: post}
+                  .tag
+                    - if post.tags
+                      - post.tags.each do |tag|
+                        = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
+                          = icon("fas", "hashtag")
+                          = tag.name

@@ -2,7 +2,7 @@
   .container
     .row
       .col-lg-12.col-md-12.mb-3
-        .card.shadow-sm
+        .card.shadow-sm-2.show
           .img-box2
             - @post.images.each do |image|
               = image_tag image.src.url, class: "img2 img-fluid"
@@ -24,7 +24,7 @@
             = link_to (@post.user.name), user_path(@post.user_id), class: "name"
           .col-md-12
             .card-text.pt-2.content
-              = @post.content
+              = simple_format(@post.content)
           .col-md-12.text-right.edit
             - if user_signed_in? && current_user.id == @post.user_id
               = link_to "編集", edit_post_path(@post.id)
@@ -45,7 +45,7 @@
                     .col-sm-2.col-md-2
                       = link_to (comment.user.name), user_path(comment.user_id), class: "name"
                     .col-sm-8.col-md-8.card-text
-                      = comment.text
+                      = simple_format(comment.text)
                     .col-sm-2.col-md-2
                       - if user_signed_in? && current_user.id == comment.user_id
                         = link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete

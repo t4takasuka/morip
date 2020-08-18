@@ -8,7 +8,7 @@
         .row
           .col-sm-2
             .user-img-box
-              - if user_signed_in? && current_user.image
+              - if user_signed_in? && current_user
                 = image_tag @user.image.url, class: "user-img img-fliud"
               - else 
                 = image_tag "/assets/default.png", alt: "testuser", class: "user-img img-fliud"
