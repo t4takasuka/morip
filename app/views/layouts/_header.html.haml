@@ -1,40 +1,135 @@
 .navbar
-  .container.d-flex.justify-content-between
+  .container.d-flex
     .navbar-brand.d-flex.align-items-center
-      %h4
-        = link_to "Morip", root_path, class: "title"
-    .navbar-dark.navbar-toggler{type: "button",
-      data: {toggle: "collapse",
-            target: "#navbarHeader"},
-      aria: {controls: "navbarHeader",
-            expanded: "false",
-            label: "Toggle navigation"}}
-      %span.navbar-toggler-icon
+      = link_to image_tag("/assets/MORIP.png", class: "brand"), root_path, class: "header-brand"
+      -# %h4
+      -#   = link_to "Morip", root_path, class: "title"
+        
+      -# = image_tag "/assets/MORIP.png", alt: "testuser", class: "user-img img-fliud"
+-#     .navbar-dark.navbar-toggler{type: "button",
+-#       data: {toggle: "collapse",
+-#             target: "#navbarHeader"},
+-#       aria: {controls: "navbarHeader",
+-#             expanded: "false",
+-#             label: "Toggle navigation"}}
+-#       %span.navbar-toggler-icon
 
-.collapse.navbar#navbarHeader.shadow-sm
-  .container
-    .row.ml-auto
-      .col-sm-8.col-md-12
-        - if user_signed_in?
-          %ul.list-unstyled
-            %li
-              = link_to "マイページ", user_path(current_user), class: "menu"
-            %li
-              = link_to "新規投稿", new_post_path, class: "menu"
-            %li
-              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu"
-            %li
-              = link_to "クイズ", "#", class: "menu"
-        - else
-          %ul.list-unstyled
-            %li
-              = link_to "新規登録", new_user_registration_path, class: "menu"
-            %li
-              = link_to "ログイン", new_user_session_path, class: "menu"
-            %li
+-# .collapse.navbar#navbarHeader.shadow-sm
+-#   .container
+-#     .row.ml-auto
+-#       .col-sm-8.col-md-12
+-#         - if user_signed_in?
+-#           %ul.list-unstyled
+-#             %li
+-#               = link_to "マイページ", user_path(current_user), class: "menu"
+-#             %li
+-#               = link_to "新規投稿", new_post_path, class: "menu"
+-#             %li
+-#               = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu"
+-#             %li
+-#               = link_to "クイズ", "#", class: "menu"
+-#         - else
+-#           %ul.list-unstyled
+-#             %li
+-#               = link_to "新規登録", new_user_registration_path, class: "menu"
+-#             %li
+-#               = link_to "ログイン", new_user_session_path, class: "menu"
+-#             %li
+-#               = link_to "かんたんログイン", user_guest_sign_in_path, method: :post, class: "menu"
+-#             %li
+-#               = link_to "ユーザー一覧", "#", class: "menu"
+-#         = form_with(url: search_posts_path, local: true, method: :get, class: "form-inline") do |f|
+-#           = f.text_field :keyword, placeholder: "Search", class: "form-control mr-2"
+-#           = f.submit "Search", class: "btn btn-outline-primary"
+
+.page-wrapper.chiller-theme
+  %a#show-sidebar.btn.btn-sm.btn-dark{:href => "#"}
+    %i.fas.fa-bars
+  .toggled
+  %nav#sidebar.sidebar-wrapper
+    .sidebar-content
+      .sidebar-brand
+        %a{:href => root_path } Morip
+        #close-sidebar
+          %i.fas.fa-times
+      - if user_signed_in?
+        .sidebar-header
+          .user-pic
+            = image_tag current_user.image.url, class: "user-img img-fliud"
+          .user-info
+            %h6.user-name
+              = current_user.name
+            %span.user-role
+              = link_to "マイページ", user_path(current_user)
+            %span.user-role
+              = link_to "ログアウト", destroy_user_session_path, method: :delete
+        .sidebar-search
+          %div
+            .input-group
+              = form_with(url: search_posts_path, local: true, method: :get, class: "form-inline") do |f|
+                = f.text_field :keyword, placeholder: "Search", class: "form-control search-menu"
+                = f.button :type => "submit", style: 'border-style: none;', class: "input-group-text" do
+                  = icon("fas", "search")
+        .sidebar-menu
+          %ul
+            %li.sidebar-menu
+              %a{:href => new_post_path}
+                %i.far.fa-image
+                %span 新規投稿
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-users
+                %span ユーザー一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-users
+                %span ランキング
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span いいね一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-users
+                %span フォロー中一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span フォロワー一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span クイズ
+      - else
+        .sidebar-search
+          %div
+            .input-group
+              = form_with(url: search_posts_path, local: true, method: :get, class: "form-inline") do |f|
+                = f.text_field :keyword, placeholder: "Search", class: "form-control search-menu"
+                = f.button :type => "submit", style: 'border-style: none;', class: "input-group-text" do
+                  = icon("fas", "search")
+        .sidebar-menu
+          %ul
+            %li.sidebar-menu
+              %a{:href => new_user_registration_path }
+                %i.fas.fa-user-plus
+                %span 新規登録
+            %li.sidebar-menu
+              %a{:href => new_user_session_path }
+                %i.fa.fa-sign-in-alt
+                %span ログイン
+            %li.sidebar-menu.login
               = link_to "かんたんログイン", user_guest_sign_in_path, method: :post, class: "menu"
-            %li
-              = link_to "ユーザー一覧", "#", class: "menu"
-        = form_with(url: search_posts_path, local: true, method: :get, class: "form-inline") do |f|
-          = f.text_field :keyword, placeholder: "Search", class: "form-control mr-2"
-          = f.submit "Search", class: "btn btn-outline-primary"
+              = icon("fas", "user")
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-users
+                %span ユーザー一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-users
+                %span ランキング
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span クイズ

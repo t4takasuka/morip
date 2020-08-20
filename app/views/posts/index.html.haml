@@ -1,23 +1,26 @@
--# .carousel.slide#carouselExampleIndicators{:data => {:ride => "carousel", :interval => "false"}}
--#   %ol.carousel-indicators
--#     %li.active{:data => {:target => "#carouselExampleIndicators", :slide_to => "0" }}
--#     %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "1" }}
--#     %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "2" }}
--#   .carousel-inner
--#     .carousel-item.active
--#       %img.w-100{:src => "assets/2670358_s.jpg", :alt => "First slide"}
--#     .carousel-item
--#       %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
--#     .carousel-item
--#       %img.w-100{:src => "assets/モロッコ１.jpg", :alt => "First slide"}
--#   %a.carousel-control-prev{:href => "#carouselExampleIndicators", :role => "button", :data => {:slide => "prev"}}
--#   %a.carousel-control-next{:href => "#carouselExampleIndicators", :role => "button",  :data => {:slide => "next"}}
+-# .main-view-wrapper
+-#   .carousel.slide#carouselExampleIndicators{:data => {:ride => "carousel", :interval => "false"}}
+-#     %ol.carousel-indicators
+-#       %li.active{:data => {:target => "#carouselExampleIndicators", :slide_to => "0" }}
+-#       %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "1" }}
+-#       %li{:data => {:target => "#carouselExampleIndicators", :slide_to => "2" }}
+-#     .carousel-inner
+-#       .carousel-item.active
+-#         %img.img-fluid{:src => "/assets/main-image1", :alt => "First slide"}
+-#       .carousel-item
+-#         %img.img-fluid{:src => "/assets/main-image2", :alt => "First slide"}
+-#       .carousel-item
+-#         %img.img-fluid{:src => "/assets/main-image3", :alt => "First slide"}
+-#     %a.carousel-control-prev{:href => "#carouselExampleIndicators", :role => "button", :data => {:slide => "prev"}}
+-#     %a.carousel-control-next{:href => "#carouselExampleIndicators", :role => "button",  :data => {:slide => "next"}}
+
+%img.img-fluid{:src => "/assets/main-image0.png"}
 
 .album.py-4
   .container
     .row
       - @post.each do |post|
-        .col-lg-4.col-md-6.mb-3
+        .col-lg-4.col-md-12.mb-3
           .card.shadow-sm
             - post.images.each do |image|
               .img-box
@@ -28,6 +31,7 @@
                   = link_to (post.title), post_path(post.id), class: "text"
                   .row
                     .col-sm-8.date
+                      = icon("far", "clock")
                       = post.created_at.strftime("%Y-%m-%d %H:%M")
                     .col-sm-4.like
                       = render partial: 'likes/like',locals: { post: post}
@@ -35,5 +39,5 @@
                     - if post.tags
                       - post.tags.each do |tag|
                         = link_to tag_posts_path(tag_id: tag.id), class: "tag mb-1, mr-1" do
-                          = icon("fas", "hashtag")
+                          = icon("fas", "tag")
                           = tag.name
