@@ -1,3 +1,8 @@
+.main-view-wrapper {
+  padding: 85px 0px 0px 0px;
+}
+
+
 .album.py-4 {
   background-color: #d1d1d1;
 }
@@ -46,13 +51,13 @@ a {
 
 .card.shadow-sm {
   padding: 10px;
-  background-color: #2a2a2a;
+  background-color: #202020;
   border-radius: 12px;
 }
 
 .card.shadow-sm-2 {
   padding: 10px;
-  background-color: #2a2a2a;
+  background-color: #202020;
   border-radius: 12px;
 }
 
@@ -91,7 +96,7 @@ a {
 
 .card.py-2 {
   color: white;
-  background-color: #2a2a2a;
+  background-color: #202020;
   border: 0;
 }
 
@@ -103,26 +108,28 @@ a {
   &:hover {
     color: #007bff;
     text-decoration: none;
+    text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
   }
 }
 
 .date {
-  color: #9f9f9f;
+  color: #818896;
   font-size: small
 }
 
 .tag {
-  color: #9f9f9f;
+  color: #818896;
   font-size: small;
   &:hover {
     color: #007bff;
     text-decoration: none;
+    text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
   }
 }
 
 .like {
   text-align: right;
-  color: #9f9f9f;
+  color: #818896;
   font-size: small
 }
 
@@ -141,7 +148,7 @@ a {
 }
 
 .card-text {
-  color: #9f9f9f;
+  color: #818896;
 }
 
 .card-text-comments {
@@ -159,16 +166,17 @@ a {
   &:hover {
     color: #007bff;
     text-decoration: none;
+    text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
   }
 }
 
 .card-text.pt-2.content {
-  color: #9f9f9f;
+  color: #818896;
 }
 
 em {
   font-size: 90%;
-  color: #9f9f9f;;
+  color: #818896;
 }
 
 .user-img-box {
@@ -182,4 +190,8 @@ em {
 
 .col-md-12.pt-1.card-text {
   display: flex;
+}
+
+img.user-img.show {
+  width: 25px;
 }
