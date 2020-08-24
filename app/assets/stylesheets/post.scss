@@ -2,6 +2,29 @@
   padding: 85px 0px 0px 0px;
 }
 
+.container-fluid {
+  background-image: image-url("main-image0.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 700px;
+  .col-xs-12.main-text {
+    font-family: "M PLUS 1p";
+    margin: auto;
+    line-height: 700px;
+    font-size: 50px;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
+  }
+}
+
+.col-lg-12.col-md-12.mb-3 {
+  padding-top: 80px;
+}
+
+.container.post {
+  padding-top: 80px;
+}
 
 .album.py-4 {
   background-color: #d1d1d1;
