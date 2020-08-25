@@ -9,10 +9,11 @@
   background-size: cover; 
   height: 700px;
   .col-xs-12.main-text {
-    font-family: "M PLUS 1p";
+    font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 
+    'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
     margin: auto;
     line-height: 700px;
-    font-size: 50px;
+    font-size: 40px;
     color: #fff;
     text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
   }
