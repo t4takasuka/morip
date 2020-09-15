@@ -2,45 +2,6 @@
   .container.d-flex
     .navbar-brand.d-flex.align-items-center
       = link_to image_tag("/assets/MORIP.png", class: "brand"), root_path, class: "header-brand"
-      -# %h4
-      -#   = link_to "Morip", root_path, class: "title"
-        
-      -# = image_tag "/assets/MORIP.png", alt: "testuser", class: "user-img img-fliud"
--#     .navbar-dark.navbar-toggler{type: "button",
--#       data: {toggle: "collapse",
--#             target: "#navbarHeader"},
--#       aria: {controls: "navbarHeader",
--#             expanded: "false",
--#             label: "Toggle navigation"}}
--#       %span.navbar-toggler-icon
-
--# .collapse.navbar#navbarHeader.shadow-sm
--#   .container
--#     .row.ml-auto
--#       .col-sm-8.col-md-12
--#         - if user_signed_in?
--#           %ul.list-unstyled
--#             %li
--#               = link_to "マイページ", user_path(current_user), class: "menu"
--#             %li
--#               = link_to "新規投稿", new_post_path, class: "menu"
--#             %li
--#               = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "menu"
--#             %li
--#               = link_to "クイズ", "#", class: "menu"
--#         - else
--#           %ul.list-unstyled
--#             %li
--#               = link_to "新規登録", new_user_registration_path, class: "menu"
--#             %li
--#               = link_to "ログイン", new_user_session_path, class: "menu"
--#             %li
--#               = link_to "かんたんログイン", user_guest_sign_in_path, method: :post, class: "menu"
--#             %li
--#               = link_to "ユーザー一覧", "#", class: "menu"
--#         = form_with(url: search_posts_path, local: true, method: :get, class: "form-inline") do |f|
--#           = f.text_field :keyword, placeholder: "Search", class: "form-control mr-2"
--#           = f.submit "Search", class: "btn btn-outline-primary"
 
 .page-wrapper.chiller-theme
   %a#show-sidebar.btn.btn-sm.btn-dark{:href => "#"}
@@ -79,27 +40,19 @@
             %li.sidebar-menu
               %a{:href => "#"}
                 %i.fa.fa-users
-                %span ユーザー一覧
+                %span ユーザー 一覧
+            %li.sidebar-menu
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span いいね 一覧
             %li.sidebar-menu
               %a{:href => "#"}
                 %i.fa.fa-users
-                %span ランキング
+                %span フォロー中 一覧
             %li.sidebar-menu
               %a{:href => "#"}
                 %i.fa.fa-chart-line
-                %span いいね一覧
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-users
-                %span フォロー中一覧
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-chart-line
-                %span フォロワー一覧
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-chart-line
-                %span クイズ
+                %span フォロワー 一覧
       - else
         .sidebar-search
           %div
@@ -121,15 +74,3 @@
             %li.sidebar-menu.login
               = link_to "かんたんログイン", user_guest_sign_in_path, method: :post, class: "menu"
               = icon("fas", "user")
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-users
-                %span ユーザー一覧
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-users
-                %span ランキング
-            %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-chart-line
-                %span クイズ

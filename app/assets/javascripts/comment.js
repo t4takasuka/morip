@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function(){
                       <a class ="name" href="/users/${comment.user_id}">${comment.user_name}</a>
                     </div>
                     <div class="col-sm-8 col-md-8 card-text">
-                      <%= simple_format${comment.text} %>
+                      ${comment.text}
                     </div>
                     <div class="col-sm-2 col-md-2">
                       <a rel="nofollow" data-method="delete" href="/posts/${comment.post_id}/comments/${comment.id}">削除</a>

@@ -20,11 +20,11 @@
 }
 
 .col-lg-12.col-md-12.mb-3 {
-  padding-top: 80px;
+  // padding-top: 80px;
 }
 
 .container.post {
-  padding-top: 80px;
+  // padding-top: 80px;
 }
 
 .album.py-4 {
@@ -51,10 +51,6 @@ a {
     max-width: none;
     display: block;
     position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // -webkit-transform: translate(-50%,-50%);
-    // transform: translate(-50%,-50%);
     transition: 0.5s;
   }
 }
@@ -218,4 +214,16 @@ em {
 
 img.user-img.show {
   width: 25px;
+}
+
+i.far.fa-heart.unlike-button-icon {
+  color:  #007bff;
+}
+
+i.fas.fa-tag {
+  color:  #007bff;
+}
+
+i.fas.fa-comments {
+  color:  #007bff;
 }
