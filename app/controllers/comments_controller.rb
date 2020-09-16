@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find_by(id: params[:id], post_id: params[:post_id])
+    # binding.pry
     comment.destroy
     post = Post.find(params[:post_id])
     flash[:alertnow] = "コメントを削除しました"
