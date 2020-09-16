@@ -46,13 +46,13 @@
                 .card-text-comments
                   .row
                     .col-sm-2.col-md-2
-                      = image_tag @post.user.image.url, class: "user-img show"
+                      = image_tag comment.user.image.url, class: "user-img show"
                       = link_to (comment.user.name), user_path(comment.user_id), class: "name"
                     .col-sm-8.col-md-8.card-text
                       = simple_format(comment.text)
                     .col-sm-2.col-md-2
                       - if user_signed_in? && current_user.id == comment.user_id
-                        = link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete
+                        = link_to "削除", post_comment_path(comment.post.id, comment.id), id: "comment_destroy", method: :delete
 
 .fotter2.text-center.pb-4
   .container
