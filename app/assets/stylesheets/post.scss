@@ -15,16 +15,12 @@
     line-height: 700px;
     font-size: 40px;
     color: #fff;
-    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000;
+    text-shadow:
+            2px 2px 2px #000, -2px -2px 2px #000,
+           -2px 2px 2px #000,  2px -2px 2px #000,
+            2px 0px 2px #000, -2px -0px 2px #000,
+            0px 2px 2px #000,  0px -2px 2px #000;
   }
-}
-
-.col-lg-12.col-md-12.mb-3 {
-  // padding-top: 80px;
-}
-
-.container.post {
-  // padding-top: 80px;
 }
 
 .album.py-4 {
@@ -219,6 +215,14 @@ em {
 
 img.user-img.show {
   width: 40px;
+}
+
+#show-sidebar {
+  background-color: #DDDDDD;
+}
+
+i.fas.fa-bars {
+  color: #000;
 }
 
 i.fas.fa-heart.like-button-icon {

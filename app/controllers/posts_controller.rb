@@ -45,7 +45,6 @@ class PostsController < ApplicationController
 
   def search
     @post = Post.search(params[:keyword]).order(created_at: "DESC")
-    flash[:alertnow] = "検索結果はありません。"
   end
 
   def tag
