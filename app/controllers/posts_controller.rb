@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search, :tag]
 
   def index
-    @post = Post.includes([:images]).order(created_at: "DESC")
+    @posts = Post.includes([:images]).order(created_at: "DESC")
   end
 
   def new

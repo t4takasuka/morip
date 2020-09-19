@@ -125,11 +125,16 @@ a {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 22px;
   &:hover {
     color: #007bff;
     text-decoration: none;
     text-shadow:0px 0px 10px rgba(22, 199, 255, 0.5);
   }
+}
+
+.show-title {
+  font-size: 22px;
 }
 
 .date {
@@ -213,11 +218,19 @@ em {
 }
 
 img.user-img.show {
-  width: 25px;
+  width: 40px;
+}
+
+i.fas.fa-heart.like-button-icon {
+  color:  #007bff;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 i.far.fa-heart.unlike-button-icon {
   color:  #007bff;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 i.fas.fa-tag {
@@ -226,4 +239,8 @@ i.fas.fa-tag {
 
 i.fas.fa-comments {
   color:  #007bff;
+}
+
+.like-button-heart:hover {
+  text-decoration: none;
 }
