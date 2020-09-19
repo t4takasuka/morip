@@ -3,10 +3,12 @@
     .col-xs-12.main-text
       %p モロッコの旅の思い出を共有しよう
 
+-# = render partial: 'likes/like', collection: @post, as: "post" 
+
 .album.py-4
   .container
     .row
-      - @post.each do |post|
+      - @posts.each do |post|
         .col-lg-4.col-md-12.mb-3
           .card.shadow-sm
             - post.images.each do |image|
@@ -21,7 +23,8 @@
                       = icon("far", "clock")
                       = post.created_at.strftime("%Y-%m-%d %H:%M")
                     .col-sm-4.like
-                      = render partial: 'likes/like',locals: { post: post}
+                      %div{:id => "likes_buttons_#{post.id}"}
+                        = render partial: 'likes/like', locals: { post: post}
                   .tag
                     - if post.tags
                       - post.tags.each do |tag|

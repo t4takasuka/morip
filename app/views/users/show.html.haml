@@ -48,7 +48,8 @@
                       = icon("far", "clock")
                       = post.created_at.strftime("%Y-%m-%d %H:%M")
                     .col-sm-4.like
-                      = render partial: 'likes/like',locals: { post: post}
+                      %div{:id => "likes_buttons_#{post.id}"}
+                        = render partial: 'likes/like',locals: { post: post}
                   .tag
                     - if post.tags
                       - post.tags.each do |tag|
