@@ -1,10 +1,8 @@
-.container-fluid
-  .row
-    .col-xs-12.main-text
-      %p モロッコの旅の思い出を共有しよう
-
 .album.py-4
   .container
+    .row
+      .col-lg-4.col-md-6.mb-3
+        %h5 #{icon("fas", "heart")} いいね した一覧
     .row
       - @posts.each do |post|
         .col-lg-4.col-md-12.mb-3
@@ -22,7 +20,7 @@
                       = post.created_at.strftime("%Y-%m-%d %H:%M")
                     .col-sm-4.like
                       %div{:id => "likes_buttons_#{post.id}"}
-                        = render partial: 'likes/like', locals: { post: post}
+                        = render partial: 'likes/like',locals: { post: post}
                   .tag
                     - if post.tags
                       - post.tags.each do |tag|

@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @likes = @user.likes.count
   end
 
+  def liked_posts
+    @user  = User.find(params[:id])
+    @posts = @user.liked_posts
+  end
+
   def following
     @user  = User.find(params[:id])
     @users = @user.followings
