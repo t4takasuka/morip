@@ -46,12 +46,12 @@
                 %i.fa.fa-heart
                 %span いいね した一覧
             %li.sidebar-menu
-              %a{:href => "#"}
+              %a{:href => following_user_path(current_user) }
                 %i.fa.fa-users
                 %span フォロー中 一覧
             %li.sidebar-menu
-              %a{:href => "#"}
-                %i.fa.fa-chart-line
+              %a{:href => followers_user_path(current_user) }
+                %i.fa.fa-users
                 %span フォロワー 一覧
       - else
         .sidebar-search
